@@ -40,7 +40,6 @@ export default function Index() {
  
   useEffect(() => {
 
-
       const blockStacks = document.querySelectorAll('.Polaris-BlockStack--listReset');
         blockStacks.forEach(blockStack => {
           blockStack.style.flexDirection = 'row';
@@ -55,7 +54,6 @@ export default function Index() {
       document.querySelectorAll('.choicelist-horizontal fieldset').forEach(fieldSet => {
         fieldSet.style.marginTop = '5px'
       })
-
 
      fetch('https://auto.searchalytics.com/suspension-bros/dashboard/send_settings.php?requestedFile=settings.json')
      .then(response => response.json())
@@ -123,10 +121,14 @@ export default function Index() {
         },
         {
           content: 'Sync Product Catalog',
-          onAction: () => {},
+          onAction: () => {
+            // Define the URL to redirect to
+            const url = 'https://auto.searchalytics.com/suspension-bros/setup/fetch-and-save/categories.php';
+            // Open the URL in a new tab
+            window.open(url, '_blank');
+          },
         },
       ]}
-
     >
       
       <Layout>
