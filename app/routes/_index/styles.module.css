@@ -1,4 +1,4 @@
-.index {
+/*.index {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -6,6 +6,10 @@
   width: 100%;
   text-align: center;
   padding: 1rem;
+}
+
+body{
+  background: red!important;
 }
 
 .heading,
@@ -70,4 +74,11 @@
   .list > li {
     padding-bottom: 1rem;
   }
+}
+*/
+
+
+.Polaris-BlockStack--listReset{
+  display: flex !important;
+  flex-direction: row !important;
 }

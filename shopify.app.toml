@@ -2,7 +2,7 @@
 
 client_id = "952a3c31f457198f9731941e9cbc1276"
 name = "Suspension Bros Searchalytics"
-application_url = "https://customs-written-lightweight-investments.trycloudflare.com"
+application_url = "https://meals-po-links-peers.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://customs-written-lightweight-investments.trycloudflare.com/auth/callback",
-  "https://customs-written-lightweight-investments.trycloudflare.com/auth/shopify/callback",
-  "https://customs-written-lightweight-investments.trycloudflare.com/api/auth/callback"
+  "https://meals-po-links-peers.trycloudflare.com/auth/callback",
+  "https://meals-po-links-peers.trycloudflare.com/auth/shopify/callback",
+  "https://meals-po-links-peers.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

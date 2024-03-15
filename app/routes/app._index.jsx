@@ -9,8 +9,12 @@ import {
   Divider,
   Layout,
   Spinner,
+  ChoiceList,
   Card
 } from "@shopify/polaris";
+
+import './_index/styles.module.css';
+
 
 export default function Index() {
   
@@ -20,7 +24,8 @@ export default function Index() {
   const [showReviewsInProductCards, setShowReviewsInProductCards] = useState(false);
   const [showButtonsInProductCards, setShowButtonsInProductCards] = useState(false);
   const [productsPerRow, setProductsPerRow] = useState("3");
-  const [productCardImageAspectRatio, setProductCardImageAspectRatio] = useState("4:3");
+  const [productCardImageAspectRatio, setProductCardImageAspectRatio] = useState("default");
+  const [headerVehicleIcon, setHeaderVehicleIcon] = useState("garage");
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -31,22 +36,40 @@ export default function Index() {
   const handleChangeShowButtonsInProductCards = () => setShowButtonsInProductCards(!showButtonsInProductCards);
   const handleChangeInProductsPerRow = (value) => {setProductsPerRow(value)};
   const handleChangeInProductCardImageAspectRatio = (value) => {setProductCardImageAspectRatio(value)};
+  const handleChangeInHeaderVehicleIcon = (value) => {setHeaderVehicleIcon(value)};
  
   useEffect(() => {
-      // Side effect code goes here
+
+
+      const blockStacks = document.querySelectorAll('.Polaris-BlockStack--listReset');
+        blockStacks.forEach(blockStack => {
+          blockStack.style.flexDirection = 'row';
+          blockStack.style.marginTop = '-3px';
+          blockStack.querySelectorAll('li').forEach((li,index)=>{
+            if(index > 0)  {
+              li.style.marginLeft = '20px';
+            }
+          })
+      });
+
+      document.querySelectorAll('.choicelist-horizontal fieldset').forEach(fieldSet => {
+        fieldSet.style.marginTop = '5px'
+      })
+
 
      fetch('https://auto.searchalytics.com/suspension-bros/dashboard/send_settings.php?requestedFile=settings.json')
      .then(response => response.json())
      .then(data => {
-        console.log(data);
-        setShowCategoryImages(data.showCategoryImages)
-        setHideProductsUntilSelected(data.hideProductsUntilSelected)
-        setShowBrandInProductCards(data.showBrandInProductCards)
-        setShowReviewsInProductCards(data.showReviewsInProductCards)
-        setShowButtonsInProductCards(data.showButtonsInProductCards)
-        setProductsPerRow(data.productsPerRow)
-        setProductCardImageAspectRatio(data.productCardImageAspectRatio)
+        setShowCategoryImages(data?.showCategoryImages || showCategoryImages)
+        setHideProductsUntilSelected(data?.hideProductsUntilSelected || hideProductsUntilSelected)
+        setShowBrandInProductCards(data?.showBrandInProductCards || showBrandInProductCards )
+        setShowReviewsInProductCards(data?.showReviewsInProductCards || showReviewsInProductCards)
+        setShowButtonsInProductCards(data?.showButtonsInProductCards || showButtonsInProductCards)
+        setProductsPerRow(data?.productsPerRow || productsPerRow)
+        setProductCardImageAspectRatio(data?.productCardImageAspectRatio || productCardImageAspectRatio )
+        setHeaderVehicleIcon(data?.headerVehicleIcon || headerVehicleIcon)
      });
+
   }, []);
 
   const sendDataToBackend = async () => {
@@ -61,10 +84,10 @@ export default function Index() {
       "showReviewsInProductCards": showReviewsInProductCards,
       "showButtonsInProductCards": showButtonsInProductCards,
       "productsPerRow": productsPerRow,
-      "productCardImageAspectRatio": productCardImageAspectRatio
+      "productCardImageAspectRatio": productCardImageAspectRatio,
+      "headerVehicleIcon": headerVehicleIcon
 
     }
-
 
     fetch('https://auto.searchalytics.com/suspension-bros/dashboard/save_settings.php', {
         method: 'POST',
@@ -100,7 +123,7 @@ export default function Index() {
         },
         {
           content: 'Sync Product Catalog',
-          onAction: () => alert('Syncing Product Catalog'),
+          onAction: () => {},
         },
       ]}
 
@@ -145,27 +168,44 @@ export default function Index() {
                   onChange={handleChangeShowReviewsInProductCards}
                 />
 
+                <div class="choicelist-horizontal">
+                  <ChoiceList
+                    title="Number of Products in a row"
+                    choices={[
+                      {label: '3', value: '3'},
+                      {label: '4', value: '4'},
+                    ]}
+                    selected={productsPerRow}
+                    onChange={handleChangeInProductsPerRow}
+                  />
+                </div>
 
-                <Select
-                  label="Number of Products in a Row"
-                  options={[
-                    { label: "3", value: "3" },
-                    { label: "4", value: "4" }
-                  ]}
-                  value={productsPerRow}
-                  onChange={handleChangeInProductsPerRow}
-                />
-              
-                <Select
-                  label="Product Card Image Aspect Ratio"
-                  options={[
-                    { label: "4:3", value: "4:3" },
-                    { label: "1:1", value: "1:1" }
-                  ]}
-                  value={productCardImageAspectRatio}
-                  onChange={handleChangeInProductCardImageAspectRatio}
-                />
+                <div class="choicelist-horizontal">
+                  <ChoiceList
+                    title="Product Card Image Aspect Ratio"
+                    choices={[
+                      { label: 'Default', value: 'default'},
+                      { label: "4:3", value: "4:3" },
+                      { label: "1:1", value: "1:1" }
+                    ]}
+                    selected={productCardImageAspectRatio}
+                    onChange={handleChangeInProductCardImageAspectRatio}
+                  />
+                </div>
 
+                <div class="choicelist-horizontal">
+                  <ChoiceList
+                    title="Header Vehicle Icon"
+                    choices={[
+                      { label: 'Garage', value: 'garage'},
+                      { label: "Car", value: "car" },
+                      { label: "Truck", value: "truck" },
+                      { label: "Jeep", value: "jeep" }
+                    ]}
+                    selected={headerVehicleIcon}
+                    onChange={handleChangeInHeaderVehicleIcon}
+                  />
+                </div>
 
             </BlockStack>
             
