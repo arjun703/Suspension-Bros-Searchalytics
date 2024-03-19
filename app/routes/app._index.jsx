@@ -231,7 +231,7 @@ export default function Index() {
 
           </Card>
           <div style={{marginTop: '15px'}}></div>
-          <InlineStack align="right" style={{ 'marginTop':'20px' }}>
+          <InlineStack align="center" style={{ 'marginTop':'20px' }}>
 
 
               <Button  className="customButton" disabled={isSaving}  onClick={sendDataToBackend} 

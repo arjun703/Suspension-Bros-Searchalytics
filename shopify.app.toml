@@ -2,7 +2,7 @@
 
 client_id = "952a3c31f457198f9731941e9cbc1276"
 name = "Suspension Bros Searchalytics"
-application_url = "https://albany-hills-insight-introduce.trycloudflare.com"
+application_url = "https://chronic-answered-america-even.trycloudflare.com"
 embedded = true
 
 [build]
@@ -16,9 +16,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://albany-hills-insight-introduce.trycloudflare.com/auth/callback",
-  "https://albany-hills-insight-introduce.trycloudflare.com/auth/shopify/callback",
-  "https://albany-hills-insight-introduce.trycloudflare.com/api/auth/callback"
+  "https://chronic-answered-america-even.trycloudflare.com/auth/callback",
+  "https://chronic-answered-america-even.trycloudflare.com/auth/shopify/callback",
+  "https://chronic-answered-america-even.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
