@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from "react";
 import {
   Page,
@@ -138,97 +142,107 @@ export default function Index() {
           <Card>
 
             <BlockStack  gap="200">
-          
-                <Checkbox
-                  label="Hide Products Until Vehicle Selected"
-                  checked={hideProductsUntilSelected}
-                  onChange={handleChangeHideProductsUntilSelected}
-                />
+              <div className="Polaris-BlockStack" style={{ }}>
+
               
-                <Checkbox
-                  label="Show Category Images"
-                  checked={showCategoryImages}
-                  onChange={handleChangeShowCategoryImages}
-                />
+                  <div className="Polaris-BlockStack" style={{ 'width': "50%", '--pc-block-stack-order':'column' , '--pc-block-stack-gap-xs': 'var(--p-space-200)' }} >
 
-                <Checkbox
-                  label="Show Buttons in Product Cards"
-                  checked={showButtonsInProductCards}
-                  onChange={handleChangeShowButtonsInProductCards}
-                />
+                    <h2 class="Polaris-Text--root Polaris-Text--headingMd" style={{ 'fontSize': '16px', 'marginBottom': '2px' }}>Online store dashboard</h2>
+                    <Checkbox
+                      label="Hide Products Until Vehicle Selected"
+                      checked={hideProductsUntilSelected}
+                      onChange={handleChangeHideProductsUntilSelected}
+                    />
+                  
+                    <Checkbox
+                      label="Show Category Images"
+                      checked={showCategoryImages}
+                      onChange={handleChangeShowCategoryImages}
+                    />
 
-                <Checkbox
-                  label="Show Brand in Product Cards"
-                  checked={showBrandInProductCards}
-                  onChange={handleChangeShowBrandInProductCards}
-                />
+                    <Checkbox
+                      label="Show Buttons in Product Cards"
+                      checked={showButtonsInProductCards}
+                      onChange={handleChangeShowButtonsInProductCards}
+                    />
+
+                    <Checkbox
+                      label="Show Brand in Product Cards"
+                      checked={showBrandInProductCards}
+                      onChange={handleChangeShowBrandInProductCards}
+                    />
 
 
-                <Checkbox
-                  label="Show Reviews in Product Cards"
-                  checked={showReviewsInProductCards}
-                  onChange={handleChangeShowReviewsInProductCards}
-                />
+                    <Checkbox
+                      label="Show Reviews in Product Cards"
+                      checked={showReviewsInProductCards}
+                      onChange={handleChangeShowReviewsInProductCards}
+                    />
+                  </div>
+                  <div className="Polaris-BlockStack"  style={{ 'paddingLeft': '50px', 'borderLeft': '1px #eee solid',  'width': "50%", '--pc-block-stack-order':'column' , '--pc-block-stack-gap-xs': 'var(--p-space-200)' }}>
+                  <h2 class="Polaris-Text--root Polaris-Text--headingMd"  style={{ 'fontSize': '16px', 'marginBottom': '2px' }}>Online store dashboard</h2>
+                    <div class="choicelist-horizontal">
+                      <ChoiceList
+                        title="Number of Products in a row"
+                        choices={[
+                          {label: '3', value: '3'},
+                          {label: '4', value: '4'},
+                        ]}
+                        selected={productsPerRow}
+                        onChange={handleChangeInProductsPerRow}
+                      />
+                    </div>
 
-                <div class="choicelist-horizontal">
-                  <ChoiceList
-                    title="Number of Products in a row"
-                    choices={[
-                      {label: '3', value: '3'},
-                      {label: '4', value: '4'},
-                    ]}
-                    selected={productsPerRow}
-                    onChange={handleChangeInProductsPerRow}
-                  />
+
+                    <div class="choicelist-horizontal">
+                      <ChoiceList
+                        title="Product Card Image Aspect Ratio"
+                        choices={[
+                          { label: 'Default', value: 'default'},
+                          { label: "4:3", value: "4:3" },
+                          { label: "1:1", value: "1:1" }
+                        ]}
+                        selected={productCardImageAspectRatio}
+                        onChange={handleChangeInProductCardImageAspectRatio}
+                      />
+                    </div>
+
+                    <div class="choicelist-horizontal">
+                      <ChoiceList
+                        title="Header Vehicle Icon"
+                        choices={[
+                          { label: 'Garage', value: 'garage'},
+                          { label: "Car", value: "car" },
+                          { label: "Truck", value: "truck" },
+                          { label: "Jeep", value: "jeep" }
+                        ]}
+                        selected={headerVehicleIcon}
+                        onChange={handleChangeInHeaderVehicleIcon}
+                      />
+                    </div>
+                  </div>
                 </div>
-
-                <div class="choicelist-horizontal">
-                  <ChoiceList
-                    title="Product Card Image Aspect Ratio"
-                    choices={[
-                      { label: 'Default', value: 'default'},
-                      { label: "4:3", value: "4:3" },
-                      { label: "1:1", value: "1:1" }
-                    ]}
-                    selected={productCardImageAspectRatio}
-                    onChange={handleChangeInProductCardImageAspectRatio}
-                  />
-                </div>
-
-                <div class="choicelist-horizontal">
-                  <ChoiceList
-                    title="Header Vehicle Icon"
-                    choices={[
-                      { label: 'Garage', value: 'garage'},
-                      { label: "Car", value: "car" },
-                      { label: "Truck", value: "truck" },
-                      { label: "Jeep", value: "jeep" }
-                    ]}
-                    selected={headerVehicleIcon}
-                    onChange={handleChangeInHeaderVehicleIcon}
-                  />
-                </div>
-
             </BlockStack>
             
-            <div style={{marginTop: '15px'}}></div>
+            {/* <div style={{marginTop: '15px'}}></div> */}
 
 
-            <InlineStack align="center">
-
-
-                <Button  className="customButton" disabled={isSaving}  onClick={sendDataToBackend} 
-                   variant="primary" accessibilityLabel="Save">
-                  {
-                    isSaving
-                      ?  <Spinner size="small" />
-                      : 'Save'
-                  }
-                </Button>
-            </InlineStack>
+            
 
           </Card>
+          <div style={{marginTop: '15px'}}></div>
+          <InlineStack align="right" style={{ 'marginTop':'20px' }}>
 
+
+              <Button  className="customButton" disabled={isSaving}  onClick={sendDataToBackend} 
+                variant="primary" accessibilityLabel="Save">
+                {
+                  isSaving
+                    ?  <Spinner size="small" />
+                    : 'Save'
+                }
+              </Button>
+              </InlineStack>
         </Layout.Section>
       
       </Layout>

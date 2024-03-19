@@ -82,3 +82,8 @@ body{
   display: flex !important;
   flex-direction: row !important;
 }
+/* .choiceHorizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
