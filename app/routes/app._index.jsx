@@ -106,7 +106,6 @@ export default function Index() {
         setIsSaving(false)
       })
 
-
 }
 
   return (
@@ -127,7 +126,7 @@ export default function Index() {
           content: 'Sync Product Catalog',
           onAction: () => {
             // Define the URL to redirect to
-            const url = 'https://auto.searchalytics.com/suspension-bros/setup/fetch-and-save/categories.php';
+            const url = 'https://auto.searchalytics.com/suspension-bros/setup/fetch-and-manage-database/index.php';
             // Open the URL in a new tab
             window.open(url, '_blank');
           },
